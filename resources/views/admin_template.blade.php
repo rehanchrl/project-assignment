@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="skin-blue">
+    <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         <!-- Main Header -->
