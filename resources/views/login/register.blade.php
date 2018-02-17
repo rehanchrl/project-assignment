@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Register</p>
 
-    <form action="../../index2.html" method="post">
+    <form action="{{ route('post.register')}}" method="POST">
       {{ csrf_field() }}
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="name" placeholder="Nama" required autofocus>
