@@ -21,7 +21,7 @@ Route::get('admin', function () {
 Route::get('test', 'TestController@index');
 
 Route::get('/register', 'AuthController@getRegister');
-Route::post('/regisrer', 'AuthController@postRegister')->name('post.register');
+Route::post('/register', 'AuthController@postRegister')->name('post.register');
 
 Route::get('/login', 'AuthController@getLogin');
 Route::post('/login', 'AuthController@postLogin')->name('post.login');
