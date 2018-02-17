@@ -6,9 +6,9 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>{{ $page_title or "AdminLTE Dashboard" }}</title>
+        <title>{{ $page_title or "Dashboard" }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- Bootstrap 3.3.2 -->
+        <!-- Bootstrap 3.3.7 -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Font Awesome Icons -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -33,9 +33,9 @@
     <div class="wrapper">
 
         <!-- Main Header -->
-        @include('header')
+        @include('dashboard.header')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('sidebar')
+        @include('dashboard.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -60,7 +60,7 @@
         </div><!-- /.content-wrapper -->
 
         <!-- Main Footer -->
-        @include('footer')
+        @include('dashboard.footer')
 
     </div><!-- ./wrapper -->
 

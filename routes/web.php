@@ -19,4 +19,11 @@ Route::get('admin', function () {
     return view('admin_template');
 });
 
+Route::get('login', function () {
+    return view('login.login');
+});
+
+Route::get('register', function () {
+    return view('login.register');
+});
 Route::get('test', 'TestController@index');
