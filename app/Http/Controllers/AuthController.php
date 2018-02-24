@@ -13,7 +13,9 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        dd('login success');
+        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->back();
+        }
     }
 
     public function getRegister()
@@ -23,6 +25,28 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
-        dd('regist success');
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+        
+        //User Login
+        Auth::loginUsingId($user->id);
+
+        return redirect()->route('user-page');
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 }
