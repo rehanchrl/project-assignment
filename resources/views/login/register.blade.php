@@ -36,28 +36,40 @@
   <div class="login-box-body">
     <p class="login-box-msg">Register</p>
 
-    <form action="{{ route('post.register')}}" method="POST">
+    <form action="{{ route('register')}}" method="POST">
       {{ csrf_field() }}
-      <div class="form-group has-feedback">
+      <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
         <input type="text" class="form-control" name="name" placeholder="Nama" required autofocus>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @if ($errors->has('name'))
+          <span class="help-block">{{ $errors->first('name') }}</span>
+        @endif
       </div>
-      <div class="form-group has-feedback">
+      <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
         <input type="email" class="form-control" name="email" placeholder="Email" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @if ($errors->has('email'))
+          <span class="help-block">{{ $errors->first('email') }}</span>
+        @endif
       </div>
-      <div class="form-group has-feedback">
+      <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
         <input type="password" class="form-control" name="password" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @if ($errors->has('password'))
+          <span class="help-block">{{ $errors->first('password') }}</span>
+        @endif
       </div>
-      <div class="form-group has-feedback">
+      <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
         <input type="password" class="form-control" name="password_confirmation" placeholder="Password Confirmation" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @if ($errors->has('password_confirmation'))
+          <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
+        @endif
       </div>
       <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
     </form>
     
-    <a href="register.html" class="text-center">I already have an account</a>
+    <a href="{{ route('login')}}" class="text-center">I already have an account</a>
 
   </div>
   <!-- /.login-box-body -->
