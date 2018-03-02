@@ -16,8 +16,9 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('test') ;
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $userRole = Auth::user()->role;
+            return redirect()->route($userRole) ;
         }
     }
 
@@ -44,7 +45,7 @@ class AuthController extends Controller
         //User Login
         Auth::loginUsingId($user->id);
 
-        return redirect()->route('test');
+        return redirect()->route($user->role);
     }
 
     public function getLogout()

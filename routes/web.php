@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('dd', function () {
+    return dd(Auth::user());
+})->middleware('guest')->name('dd');
 
-Route::get('admin', function () {
-    return view('admin_template');
-});
-Route::get('test', 'TestController@index')->middleware('auth')->name('test');
+Route::get('haha', 'TestController@index')->middleware('auth')->name('test');
 
 Route::get('/register', 'AuthController@getRegister')->middleware('guest');
 Route::post('/register', 'AuthController@postRegister')->middleware('guest')->name('register');
@@ -27,3 +24,21 @@ Route::get('/login', 'AuthController@getLogin')->middleware('guest');
 Route::post('/login', 'AuthController@postLogin')->middleware('guest')->name('login');
 
 Route::get('/logout', 'AuthController@getLogout')->middleware('auth')->name('logout');
+
+Route::group(['middleware' => ['role:admin'], 'prefix' => 'admin'], function () {
+    Route::get('/', function () {
+        return view('admin.admin');
+    })->name('admin');
+});
+
+Route::group(['middleware' => ['role:pm'], 'prefix' => 'pm'], function () {
+    Route::get('/', function () {
+        return view('pm.pm');
+    })->name('pm');
+});
+
+Route::group(['middleware' => ['role:engineer'], 'prefix' => 'engineer'], function () {
+    Route::get('/', function () {
+        return view('engineer.engineer');   
+    })->name('engineer');
+});
