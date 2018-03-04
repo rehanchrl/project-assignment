@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-    <!--
-    This is a starter template page. Use this page to start your new project from
-    scratch. This page gets rid of all links and provides the needed markup only.
-    -->
     <html>
     <head>
         <meta charset="UTF-8">
@@ -16,10 +12,7 @@
         <link href="{{ asset("/bower_components/Ionicons/css/ionicons.min.css")}}" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="{{ asset("/bower_components/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
-        <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-              page. However, you can choose any other skin. Make sure you
-              apply the skin class to the body tag so the changes take effect.
-        -->
+        <!-- AdminLTE Skins -->
         <link href="{{ asset("/bower_components/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,7 +28,13 @@
         <!-- Main Header -->
         @include('dashboard.header')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('dashboard.sidebar')
+        @if ( Auth::user()->role == 'admin')
+            @include('dashboard.sidebar-admin')
+        @elseif ( Auth::user()->role == 'pm')
+            @include('dashboard.sidebar-pm')
+        @else
+            @include('dashboard.sidebar')
+        @endif
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
